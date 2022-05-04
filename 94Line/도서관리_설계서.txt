@@ -1,0 +1,22 @@
+-- 도서관리 프로그램
+1. 데이터:
+	com.pcwk.library.domain
+	도서 : Book extends DTO
+	// 도서번호, 제목, 지은이, 장르, 대출가능 여부
+	String isbn
+	String title
+	String author
+	String genre
+	boolean available
+	
+도서목록 보기 List<DTO> doRetrieve(DTO dto)
+도서등록	 int doSave(DTO dto)
+도서삭제	 int doDelete(DTO dto)
+도서상세	 DTO doSelectOne(DTO dto)
+도서수정	 int doUpdate(DTO dto)
+------------------> Interface : WorkDiv
+
+2. 프로그램:
+
+-- 영화
+

@@ -1,0 +1,303 @@
+2022-04-14 09:43:50,223 DEBUG [main] board.PConnection (PConnection.java:27)     - connection: oracle.jdbc.driver.T4CConnection@36d64342
+2022-04-14 09:43:50,225 DEBUG [main] board.BoardDao    (BoardDao.java:235)     - query: 
+ SELECT                                        
+     A.seq,                                    
+     A.rnum AS NUM,                            
+     A.title,                                  
+     A.read_cnt,                 	          
+     TO_CHAR(A.mod_dt,'YYYY/MM/DD') AS mod_dt, 
+     A.mod_id                                  
+ FROM(                                         
+     SELECT ROWNUM AS RNUM, t1.*               
+     FROM(                                     
+         SELECT *                              
+         FROM board                            
+         --검색조건                              
+ WHERE seq LIKE ? || '%' 
+         ORDER BY mod_dt DESC                  
+     )t1                                       
+     WHERE ROWNUM <= (? * ( ? - 1 ) + ? )      
+ )A                                            
+ WHERE RNUM >= (? * ( ? - 1 ) + 1 )            
+
+2022-04-14 09:43:50,225 DEBUG [main] board.BoardDao    (BoardDao.java:236)     - param: SearchVO [searchDiv=10, searchWord=8, pageSize=10, pageNum=1, toString()=DTO [no=0]]
+2022-04-14 09:43:50,573 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:37)     - ResultSet자원 반납
+2022-04-14 09:43:50,574 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:52)     - PreparedStatement자원 반납
+2022-04-14 09:43:50,574 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:21)     - Connection자원 반납
+2022-04-14 09:43:50,575 DEBUG [main] board.BoardMain   (BoardMain.java:129)     - vo: BoardVO [seq=8, title=제목8, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=1]]
+2022-04-14 09:43:50,575 DEBUG [main] board.BoardMain   (BoardMain.java:129)     - vo: BoardVO [seq=80, title=제목80, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=2]]
+2022-04-14 09:43:50,575 DEBUG [main] board.BoardMain   (BoardMain.java:129)     - vo: BoardVO [seq=81, title=제목81, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=3]]
+2022-04-14 09:43:50,575 DEBUG [main] board.BoardMain   (BoardMain.java:129)     - vo: BoardVO [seq=82, title=제목82, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=4]]
+2022-04-14 09:43:50,575 DEBUG [main] board.BoardMain   (BoardMain.java:129)     - vo: BoardVO [seq=83, title=제목83, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=5]]
+2022-04-14 09:43:50,575 DEBUG [main] board.BoardMain   (BoardMain.java:129)     - vo: BoardVO [seq=84, title=제목84, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=6]]
+2022-04-14 09:43:50,576 DEBUG [main] board.BoardMain   (BoardMain.java:129)     - vo: BoardVO [seq=85, title=제목85, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=7]]
+2022-04-14 09:43:50,576 DEBUG [main] board.BoardMain   (BoardMain.java:129)     - vo: BoardVO [seq=86, title=제목86, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=8]]
+2022-04-14 09:43:50,576 DEBUG [main] board.BoardMain   (BoardMain.java:129)     - vo: BoardVO [seq=87, title=제목87, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=9]]
+2022-04-14 09:43:50,576 DEBUG [main] board.BoardMain   (BoardMain.java:129)     - vo: BoardVO [seq=88, title=제목88, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=10]]
+2022-04-14 09:43:50,601 DEBUG [main] board.PConnection (PConnection.java:27)     - connection: oracle.jdbc.driver.T4CConnection@5fe94a96
+2022-04-14 09:43:50,601 DEBUG [main] board.BoardDao    (BoardDao.java:67)     - query: 
+ SELECT COUNT(*) AS total_cnt 
+ FROM board                   
+ -- 검색조건                    
+ WHERE seq LIKE ? || '%' 
+
+2022-04-14 09:43:50,601 DEBUG [main] board.BoardDao    (BoardDao.java:68)     - param: SearchVO [searchDiv=10, searchWord=8, pageSize=10, pageNum=1, toString()=DTO [no=0]]
+2022-04-14 09:43:50,873 DEBUG [main] board.BoardDao    (BoardDao.java:94)     - totalCnt: 111111
+2022-04-14 09:43:50,873 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:37)     - ResultSet자원 반납
+2022-04-14 09:43:50,873 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:52)     - PreparedStatement자원 반납
+2022-04-14 09:43:50,873 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:21)     - Connection자원 반납
+2022-04-14 09:43:50,874 DEBUG [main] board.BoardMain   (BoardMain.java:141)     - ------------------------
+2022-04-14 09:43:50,874 DEBUG [main] board.BoardMain   (BoardMain.java:142)     - -총 글수(성공): 111111
+2022-04-14 09:43:50,874 DEBUG [main] board.BoardMain   (BoardMain.java:143)     - ------------------------
+2022-04-14 09:44:38,604 DEBUG [main] board.PConnection (PConnection.java:27)     - connection: oracle.jdbc.driver.T4CConnection@36d64342
+2022-04-14 09:44:38,605 DEBUG [main] board.BoardDao    (BoardDao.java:235)     - query: 
+ SELECT                                        
+     A.seq,                                    
+     A.rnum AS NUM,                            
+     A.title,                                  
+     A.read_cnt,                 	          
+     TO_CHAR(A.mod_dt,'YYYY/MM/DD') AS mod_dt, 
+     A.mod_id                                  
+ FROM(                                         
+     SELECT ROWNUM AS RNUM, t1.*               
+     FROM(                                     
+         SELECT *                              
+         FROM board                            
+         --검색조건                              
+ WHERE title LIKE ? || '%' 
+         ORDER BY mod_dt DESC                  
+     )t1                                       
+     WHERE ROWNUM <= (? * ( ? - 1 ) + ? )      
+ )A                                            
+ WHERE RNUM >= (? * ( ? - 1 ) + 1 )            
+
+2022-04-14 09:44:38,606 DEBUG [main] board.BoardDao    (BoardDao.java:236)     - param: SearchVO [searchDiv=20, searchWord=제목8, pageSize=10, pageNum=1, toString()=DTO [no=0]]
+2022-04-14 09:44:38,934 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:37)     - ResultSet자원 반납
+2022-04-14 09:44:38,935 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:52)     - PreparedStatement자원 반납
+2022-04-14 09:44:38,935 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:21)     - Connection자원 반납
+2022-04-14 09:44:38,935 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=8, title=제목8, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=1]]
+2022-04-14 09:44:38,936 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=80, title=제목80, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=2]]
+2022-04-14 09:44:38,936 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=81, title=제목81, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=3]]
+2022-04-14 09:44:38,936 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=82, title=제목82, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=4]]
+2022-04-14 09:44:38,936 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=83, title=제목83, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=5]]
+2022-04-14 09:44:38,936 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=84, title=제목84, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=6]]
+2022-04-14 09:44:38,936 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=85, title=제목85, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=7]]
+2022-04-14 09:44:38,936 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=86, title=제목86, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=8]]
+2022-04-14 09:44:38,936 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=87, title=제목87, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=9]]
+2022-04-14 09:44:38,936 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=88, title=제목88, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=10]]
+2022-04-14 09:44:38,960 DEBUG [main] board.PConnection (PConnection.java:27)     - connection: oracle.jdbc.driver.T4CConnection@5fe94a96
+2022-04-14 09:44:38,960 DEBUG [main] board.BoardDao    (BoardDao.java:67)     - query: 
+ SELECT COUNT(*) AS total_cnt 
+ FROM board                   
+ -- 검색조건                    
+ WHERE title LIKE ? || '%' 
+
+2022-04-14 09:44:38,960 DEBUG [main] board.BoardDao    (BoardDao.java:68)     - param: SearchVO [searchDiv=20, searchWord=제목8, pageSize=10, pageNum=1, toString()=DTO [no=0]]
+2022-04-14 09:44:39,345 DEBUG [main] board.BoardDao    (BoardDao.java:94)     - totalCnt: 111111
+2022-04-14 09:44:39,345 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:37)     - ResultSet자원 반납
+2022-04-14 09:44:39,345 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:52)     - PreparedStatement자원 반납
+2022-04-14 09:44:39,345 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:21)     - Connection자원 반납
+2022-04-14 09:44:39,346 DEBUG [main] board.BoardMain   (BoardMain.java:147)     - ------------------------
+2022-04-14 09:44:39,346 DEBUG [main] board.BoardMain   (BoardMain.java:148)     - -총 글수(성공): 111111
+2022-04-14 09:44:39,346 DEBUG [main] board.BoardMain   (BoardMain.java:149)     - ------------------------
+2022-04-14 09:44:50,777 DEBUG [main] board.PConnection (PConnection.java:27)     - connection: oracle.jdbc.driver.T4CConnection@36d64342
+2022-04-14 09:44:50,779 DEBUG [main] board.BoardDao    (BoardDao.java:235)     - query: 
+ SELECT                                        
+     A.seq,                                    
+     A.rnum AS NUM,                            
+     A.title,                                  
+     A.read_cnt,                 	          
+     TO_CHAR(A.mod_dt,'YYYY/MM/DD') AS mod_dt, 
+     A.mod_id                                  
+ FROM(                                         
+     SELECT ROWNUM AS RNUM, t1.*               
+     FROM(                                     
+         SELECT *                              
+         FROM board                            
+         --검색조건                              
+ WHERE title LIKE ? || '%' 
+         ORDER BY mod_dt DESC                  
+     )t1                                       
+     WHERE ROWNUM <= (? * ( ? - 1 ) + ? )      
+ )A                                            
+ WHERE RNUM >= (? * ( ? - 1 ) + 1 )            
+
+2022-04-14 09:44:50,779 DEBUG [main] board.BoardDao    (BoardDao.java:236)     - param: SearchVO [searchDiv=20, searchWord=제목80, pageSize=10, pageNum=1, toString()=DTO [no=0]]
+2022-04-14 09:44:50,935 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:37)     - ResultSet자원 반납
+2022-04-14 09:44:50,935 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:52)     - PreparedStatement자원 반납
+2022-04-14 09:44:50,935 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:21)     - Connection자원 반납
+2022-04-14 09:44:50,936 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=80, title=제목80, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=1]]
+2022-04-14 09:44:50,936 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=800, title=제목800, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=2]]
+2022-04-14 09:44:50,936 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=801, title=제목801, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=3]]
+2022-04-14 09:44:50,936 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=802, title=제목802, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=4]]
+2022-04-14 09:44:50,936 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=803, title=제목803, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=5]]
+2022-04-14 09:44:50,936 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=804, title=제목804, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=6]]
+2022-04-14 09:44:50,936 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=805, title=제목805, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=7]]
+2022-04-14 09:44:50,936 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=806, title=제목806, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=8]]
+2022-04-14 09:44:50,936 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=807, title=제목807, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=9]]
+2022-04-14 09:44:50,936 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=808, title=제목808, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=10]]
+2022-04-14 09:44:50,958 DEBUG [main] board.PConnection (PConnection.java:27)     - connection: oracle.jdbc.driver.T4CConnection@5fe94a96
+2022-04-14 09:44:50,958 DEBUG [main] board.BoardDao    (BoardDao.java:67)     - query: 
+ SELECT COUNT(*) AS total_cnt 
+ FROM board                   
+ -- 검색조건                    
+ WHERE title LIKE ? || '%' 
+
+2022-04-14 09:44:50,958 DEBUG [main] board.BoardDao    (BoardDao.java:68)     - param: SearchVO [searchDiv=20, searchWord=제목80, pageSize=10, pageNum=1, toString()=DTO [no=0]]
+2022-04-14 09:44:51,001 DEBUG [main] board.BoardDao    (BoardDao.java:94)     - totalCnt: 11111
+2022-04-14 09:44:51,002 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:37)     - ResultSet자원 반납
+2022-04-14 09:44:51,002 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:52)     - PreparedStatement자원 반납
+2022-04-14 09:44:51,002 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:21)     - Connection자원 반납
+2022-04-14 09:44:51,002 DEBUG [main] board.BoardMain   (BoardMain.java:147)     - ------------------------
+2022-04-14 09:44:51,002 DEBUG [main] board.BoardMain   (BoardMain.java:148)     - -총 글수(성공): 11111
+2022-04-14 09:44:51,002 DEBUG [main] board.BoardMain   (BoardMain.java:149)     - ------------------------
+2022-04-14 09:45:02,438 DEBUG [main] board.PConnection (PConnection.java:27)     - connection: oracle.jdbc.driver.T4CConnection@36d64342
+2022-04-14 09:45:02,440 DEBUG [main] board.BoardDao    (BoardDao.java:235)     - query: 
+ SELECT                                        
+     A.seq,                                    
+     A.rnum AS NUM,                            
+     A.title,                                  
+     A.read_cnt,                 	          
+     TO_CHAR(A.mod_dt,'YYYY/MM/DD') AS mod_dt, 
+     A.mod_id                                  
+ FROM(                                         
+     SELECT ROWNUM AS RNUM, t1.*               
+     FROM(                                     
+         SELECT *                              
+         FROM board                            
+         --검색조건                              
+ WHERE title LIKE ? || '%' 
+         ORDER BY mod_dt DESC                  
+     )t1                                       
+     WHERE ROWNUM <= (? * ( ? - 1 ) + ? )      
+ )A                                            
+ WHERE RNUM >= (? * ( ? - 1 ) + 1 )            
+
+2022-04-14 09:45:02,440 DEBUG [main] board.BoardDao    (BoardDao.java:236)     - param: SearchVO [searchDiv=20, searchWord=제목872, pageSize=10, pageNum=1, toString()=DTO [no=0]]
+2022-04-14 09:45:02,588 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:37)     - ResultSet자원 반납
+2022-04-14 09:45:02,589 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:52)     - PreparedStatement자원 반납
+2022-04-14 09:45:02,589 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:21)     - Connection자원 반납
+2022-04-14 09:45:02,590 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=872, title=제목872, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=1]]
+2022-04-14 09:45:02,590 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=8720, title=제목8720, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/11, modId=ADMIN, toString()=DTO [no=2]]
+2022-04-14 09:45:02,590 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=8721, title=제목8721, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/11, modId=ADMIN, toString()=DTO [no=3]]
+2022-04-14 09:45:02,590 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=8722, title=제목8722, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/11, modId=ADMIN, toString()=DTO [no=4]]
+2022-04-14 09:45:02,590 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=8723, title=제목8723, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/11, modId=ADMIN, toString()=DTO [no=5]]
+2022-04-14 09:45:02,590 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=8724, title=제목8724, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/11, modId=ADMIN, toString()=DTO [no=6]]
+2022-04-14 09:45:02,590 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=8725, title=제목8725, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/11, modId=ADMIN, toString()=DTO [no=7]]
+2022-04-14 09:45:02,590 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=8726, title=제목8726, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/11, modId=ADMIN, toString()=DTO [no=8]]
+2022-04-14 09:45:02,590 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=8727, title=제목8727, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/11, modId=ADMIN, toString()=DTO [no=9]]
+2022-04-14 09:45:02,590 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=8728, title=제목8728, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/11, modId=ADMIN, toString()=DTO [no=10]]
+2022-04-14 09:45:02,615 DEBUG [main] board.PConnection (PConnection.java:27)     - connection: oracle.jdbc.driver.T4CConnection@5fe94a96
+2022-04-14 09:45:02,615 DEBUG [main] board.BoardDao    (BoardDao.java:67)     - query: 
+ SELECT COUNT(*) AS total_cnt 
+ FROM board                   
+ -- 검색조건                    
+ WHERE title LIKE ? || '%' 
+
+2022-04-14 09:45:02,615 DEBUG [main] board.BoardDao    (BoardDao.java:68)     - param: SearchVO [searchDiv=20, searchWord=제목872, pageSize=10, pageNum=1, toString()=DTO [no=0]]
+2022-04-14 09:45:02,659 DEBUG [main] board.BoardDao    (BoardDao.java:94)     - totalCnt: 1111
+2022-04-14 09:45:02,660 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:37)     - ResultSet자원 반납
+2022-04-14 09:45:02,660 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:52)     - PreparedStatement자원 반납
+2022-04-14 09:45:02,660 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:21)     - Connection자원 반납
+2022-04-14 09:45:02,660 DEBUG [main] board.BoardMain   (BoardMain.java:147)     - ------------------------
+2022-04-14 09:45:02,660 DEBUG [main] board.BoardMain   (BoardMain.java:148)     - -총 글수(성공): 1111
+2022-04-14 09:45:02,660 DEBUG [main] board.BoardMain   (BoardMain.java:149)     - ------------------------
+2022-04-14 09:46:47,808 DEBUG [main] board.PConnection (PConnection.java:27)     - connection: oracle.jdbc.driver.T4CConnection@36d64342
+2022-04-14 09:46:47,809 DEBUG [main] board.BoardDao    (BoardDao.java:235)     - query: 
+ SELECT                                        
+     A.seq,                                    
+     A.rnum AS NUM,                            
+     A.title,                                  
+     A.read_cnt,                 	          
+     TO_CHAR(A.mod_dt,'YYYY/MM/DD') AS mod_dt, 
+     A.mod_id                                  
+ FROM(                                         
+     SELECT ROWNUM AS RNUM, t1.*               
+     FROM(                                     
+         SELECT *                              
+         FROM board                            
+         --검색조건                              
+ WHERE title LIKE ? || '%' 
+ OR contents LIKE ? || '%' 
+         ORDER BY mod_dt DESC                  
+     )t1                                       
+     WHERE ROWNUM <= (? * ( ? - 1 ) + ? )      
+ )A                                            
+ WHERE RNUM >= (? * ( ? - 1 ) + 1 )            
+
+2022-04-14 09:46:47,809 DEBUG [main] board.BoardDao    (BoardDao.java:236)     - param: SearchVO [searchDiv=40, searchWord=용7, pageSize=10, pageNum=1, toString()=DTO [no=0]]
+2022-04-14 09:46:49,573 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:37)     - ResultSet자원 반납
+2022-04-14 09:46:49,574 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:52)     - PreparedStatement자원 반납
+2022-04-14 09:46:49,574 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:21)     - Connection자원 반납
+2022-04-14 09:46:49,575 DEBUG [main] board.BoardMain   (BoardMain.java:138)     - -----------------------
+2022-04-14 09:46:49,575 DEBUG [main] board.BoardMain   (BoardMain.java:139)     - -목록 조회 실패-
+2022-04-14 09:46:49,575 DEBUG [main] board.BoardMain   (BoardMain.java:140)     - -----------------------
+2022-04-14 09:46:49,597 DEBUG [main] board.PConnection (PConnection.java:27)     - connection: oracle.jdbc.driver.T4CConnection@73a1e9a9
+2022-04-14 09:46:49,597 DEBUG [main] board.BoardDao    (BoardDao.java:67)     - query: 
+ SELECT COUNT(*) AS total_cnt 
+ FROM board                   
+ -- 검색조건                    
+ WHERE title LIKE ? || '%' 
+ OR contents LIKE ? || '%' 
+
+2022-04-14 09:46:49,597 DEBUG [main] board.BoardDao    (BoardDao.java:68)     - param: SearchVO [searchDiv=40, searchWord=용7, pageSize=10, pageNum=1, toString()=DTO [no=0]]
+2022-04-14 09:46:50,233 DEBUG [main] board.BoardDao    (BoardDao.java:94)     - totalCnt: 0
+2022-04-14 09:46:50,233 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:37)     - ResultSet자원 반납
+2022-04-14 09:46:50,233 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:52)     - PreparedStatement자원 반납
+2022-04-14 09:46:50,233 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:21)     - Connection자원 반납
+2022-04-14 09:46:50,234 DEBUG [main] board.BoardMain   (BoardMain.java:151)     - ------------------------
+2022-04-14 09:46:50,234 DEBUG [main] board.BoardMain   (BoardMain.java:152)     - --총 글수: 0
+2022-04-14 09:46:50,234 DEBUG [main] board.BoardMain   (BoardMain.java:153)     - ------------------------
+2022-04-14 09:47:01,121 DEBUG [main] board.PConnection (PConnection.java:27)     - connection: oracle.jdbc.driver.T4CConnection@36d64342
+2022-04-14 09:47:01,123 DEBUG [main] board.BoardDao    (BoardDao.java:235)     - query: 
+ SELECT                                        
+     A.seq,                                    
+     A.rnum AS NUM,                            
+     A.title,                                  
+     A.read_cnt,                 	          
+     TO_CHAR(A.mod_dt,'YYYY/MM/DD') AS mod_dt, 
+     A.mod_id                                  
+ FROM(                                         
+     SELECT ROWNUM AS RNUM, t1.*               
+     FROM(                                     
+         SELECT *                              
+         FROM board                            
+         --검색조건                              
+ WHERE title LIKE ? || '%' 
+ OR contents LIKE ? || '%' 
+         ORDER BY mod_dt DESC                  
+     )t1                                       
+     WHERE ROWNUM <= (? * ( ? - 1 ) + ? )      
+ )A                                            
+ WHERE RNUM >= (? * ( ? - 1 ) + 1 )            
+
+2022-04-14 09:47:01,123 DEBUG [main] board.BoardDao    (BoardDao.java:236)     - param: SearchVO [searchDiv=40, searchWord=내용7, pageSize=10, pageNum=1, toString()=DTO [no=0]]
+2022-04-14 09:47:02,569 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:37)     - ResultSet자원 반납
+2022-04-14 09:47:02,569 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:52)     - PreparedStatement자원 반납
+2022-04-14 09:47:02,569 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:21)     - Connection자원 반납
+2022-04-14 09:47:02,570 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=7, title=제목7, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=1]]
+2022-04-14 09:47:02,570 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=70, title=제목70, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=2]]
+2022-04-14 09:47:02,570 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=71, title=제목71, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=3]]
+2022-04-14 09:47:02,570 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=72, title=제목72, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=4]]
+2022-04-14 09:47:02,570 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=73, title=제목73, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=5]]
+2022-04-14 09:47:02,570 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=74, title=제목74, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=6]]
+2022-04-14 09:47:02,571 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=75, title=제목75, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=7]]
+2022-04-14 09:47:02,571 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=76, title=제목76, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=8]]
+2022-04-14 09:47:02,571 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=77, title=제목77, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=9]]
+2022-04-14 09:47:02,571 DEBUG [main] board.BoardMain   (BoardMain.java:135)     - vo: BoardVO [seq=78, title=제목78, contents=null, readCnt=0, regDt=null, regId=null, modDt=2022/04/13, modId=ADMIN, toString()=DTO [no=10]]
+2022-04-14 09:47:02,594 DEBUG [main] board.PConnection (PConnection.java:27)     - connection: oracle.jdbc.driver.T4CConnection@5fe94a96
+2022-04-14 09:47:02,594 DEBUG [main] board.BoardDao    (BoardDao.java:67)     - query: 
+ SELECT COUNT(*) AS total_cnt 
+ FROM board                   
+ -- 검색조건                    
+ WHERE title LIKE ? || '%' 
+ OR contents LIKE ? || '%' 
+
+2022-04-14 09:47:02,594 DEBUG [main] board.BoardDao    (BoardDao.java:68)     - param: SearchVO [searchDiv=40, searchWord=내용7, pageSize=10, pageNum=1, toString()=DTO [no=0]]
+2022-04-14 09:47:03,354 DEBUG [main] board.BoardDao    (BoardDao.java:94)     - totalCnt: 111111
+2022-04-14 09:47:03,355 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:37)     - ResultSet자원 반납
+2022-04-14 09:47:03,355 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:52)     - PreparedStatement자원 반납
+2022-04-14 09:47:03,355 DEBUG [main] board.JDBCUtil    (JDBCUtil.java:21)     - Connection자원 반납
+2022-04-14 09:47:03,355 DEBUG [main] board.BoardMain   (BoardMain.java:147)     - ------------------------
+2022-04-14 09:47:03,355 DEBUG [main] board.BoardMain   (BoardMain.java:148)     - -총 글수(성공): 111111
+2022-04-14 09:47:03,355 DEBUG [main] board.BoardMain   (BoardMain.java:149)     - ------------------------
